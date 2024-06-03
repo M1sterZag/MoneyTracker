@@ -3,8 +3,8 @@ import enum
 from sqlalchemy import Column, Integer, String, Float, Date, ForeignKey, Enum as SQLEnum
 from sqlalchemy.orm import relationship
 
-from backend.db.models.base import Base
-from backend.db.models.users import User
+from app.db.models.base import Base
+from app.db.models.users import User
 
 
 class OperationType(enum.Enum):
