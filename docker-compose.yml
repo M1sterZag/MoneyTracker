@@ -24,8 +24,9 @@ services:
       - "8000:8000"
     depends_on:
       - db
-    command: >
-      /bin/sh -c "alembic upgrade head"
+#    command: >
+#      /bin/sh -c "alembic upgrade head"
+#    command: ["./wait-for-db.sh", "db", "alembic", "upgrade", "head"]
 
 volumes:
   postgres_data:
