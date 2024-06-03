@@ -1,5 +1,6 @@
 from pathlib import Path
 from pydantic import BaseModel
+from pydantic_settings import BaseSettings
 from dotenv import load_dotenv
 import os
 
@@ -23,7 +24,7 @@ class AuthJWT(BaseModel):
     access_token_expire_minutes: int = 15
 
 
-class Settings:
+class Settings(BaseSettings):
     db: DbSettings = DbSettings()
 
     auth_jwt: AuthJWT = AuthJWT()
