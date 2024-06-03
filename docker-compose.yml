@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    expose:
+      - 5432
+    environment:
+      - POSTGRES_USER=fastapi
+      - POSTGRES_PASSWORD=fastapi
+      - POSTGRES_DB=fastapi
+  app:
+    container_name: "app"
+    image: app
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=fastapi
+      - DB_NAME=fastapi
+      - DB_PASS=fastapi
+    build:
+      context: backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    command: >
+      /bin/sh -c "alembic upgrade head"
+
+volumes:
+  postgres_data:
