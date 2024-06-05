@@ -9,17 +9,17 @@ class OperationType(str, Enum):
     EXPENSE = "expense"
 
 
-class Operation(BaseModel):
+class OperationSchema(BaseModel):
     title: str
     amount: float
     type: OperationType
     date: datetime
 
 
-class OperationRead(Operation):
+class OperationRead(OperationSchema):
     id: int
     user_id: int
 
 
-class OperationCreate(Operation):
+class OperationCreate(OperationSchema):
     user_id: int
