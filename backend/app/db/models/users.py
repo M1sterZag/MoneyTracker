@@ -7,5 +7,5 @@ class User(Base):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     username = Column(String(20), nullable=False, unique=True)
-    hashed_password = Column(LargeBinary, nullable=False)
+    hashed_password = Column(String, nullable=False)
     is_active = Column(Boolean, nullable=False, default=True)
