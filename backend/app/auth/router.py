@@ -2,8 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.auth import jwt_utils
-from app.auth.logic import validate_auth_user, get_current_active_user, check_user_is_exist, create_user, \
-    get_user_by_username
+from app.auth.logic import validate_auth_user, get_current_active_user, create_user, get_user_by_username
 from app.db.database import get_async_session
 from app.schemas.tokens import TokenSchema
 from app.schemas.users import UserSchema, UserCreate, UserRead
