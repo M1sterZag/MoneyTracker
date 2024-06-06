@@ -1,38 +1,24 @@
-import base64
-
-import bcrypt
 from fastapi import Form, HTTPException, status, Depends
 from fastapi.security import OAuth2PasswordBearer
 from jwt import InvalidTokenError
-from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.auth import jwt_utils
+from app.auth.work_with_db import get_user_by_username, get_user_by_id
+from app.utils import jwt_utils
 from app.db.database import get_async_session
-from app.db.models import User
-from app.schemas.users import UserSchema, UserCreate
+from app.schemas.users import UserRead
+from app.utils.password_utils import validate_password
 
 oauth2_scheme = OAuth2PasswordBearer(
     tokenUrl="/api/auth/login/",
 )
 
 
-def hash_password(password: str) -> str:
-    salt = bcrypt.gensalt()
-    hashed = bcrypt.hashpw(password.encode(), salt)
-    return base64.b64encode(hashed).decode()
-
-
-def validate_password(password: str, hashed_password: str) -> bool:
-    hashed_password_bytes = base64.b64decode(hashed_password.encode())
-    return bcrypt.checkpw(password.encode(), hashed_password_bytes)
-
-
 async def validate_auth_user(
         username: str = Form(),
         password: str = Form(),
         db: AsyncSession = Depends(get_async_session)
-):
+) -> UserRead:
     unauthed_exc = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Invalid username or password",
@@ -47,9 +33,9 @@ async def validate_auth_user(
                 detail="User is not active"
             )
 
-    return UserSchema(
+    return UserRead(
+        id=db_user.id,
         username=db_user.username,
-        hashed_password=db_user.hashed_password,
         is_active=db_user.is_active,
     )
 
@@ -72,13 +58,13 @@ def get_current_token_payload(
 async def get_current_auth_user(
     payload: dict = Depends(get_current_token_payload),
     db: AsyncSession = Depends(get_async_session)
-) -> UserSchema:
-    username: str = payload.get("sub")
-    user = await get_user_by_username(db, username)
+) -> UserRead:
+    user_id: int = payload.get("sub")
+    user = await get_user_by_id(db, user_id)
     if user:
-        return UserSchema(
+        return UserRead(
+            id=user.id,
             username=user.username,
-            hashed_password=user.hashed_password,
             is_active=user.is_active,
         )
     raise HTTPException(
@@ -88,8 +74,8 @@ async def get_current_auth_user(
 
 
 def get_current_active_user(
-        user: UserSchema = Depends(get_current_auth_user)
-) -> UserSchema:
+        user: UserRead = Depends(get_current_auth_user)
+) -> UserRead:
     if user.is_active:
         return user
     raise HTTPException(
@@ -105,20 +91,3 @@ async def check_user_is_exist(
     if not await get_user_by_username(db, username):
         return False
     return True
-
-
-async def get_user_by_username(db: AsyncSession, username: str) -> User:
-    result = await db.execute(select(User).filter(User.username == username))
-    return result.scalars().first()
-
-
-async def create_user(db: AsyncSession, user: UserCreate) -> User:
-    hashed_password = hash_password(user.password)
-    db_user = User(
-        username=user.username,
-        hashed_password=hashed_password,
-    )
-    db.add(db_user)
-    await db.commit()
-    await db.refresh(db_user)
-    return db_user

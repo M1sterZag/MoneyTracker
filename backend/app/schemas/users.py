@@ -3,16 +3,17 @@ from pydantic import BaseModel, Field
 
 class UserSchema(BaseModel):
     username: str
-    hashed_password: str
-    is_active: bool = True
 
 
-class UserRead(BaseModel):
-    username: str
+class UserRead(UserSchema):
+    id: int
     is_active: bool
 
 
-class UserCreate(BaseModel):
-    username: str
-    password: str = Field(alias="password")
+class UserLogin(UserSchema):
+    hashed_password: str = Field(alias='password')
+
+
+class UserCreate(UserSchema):
+    hashed_password: str = Field(alias="password")
     is_active: bool = True
