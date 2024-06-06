@@ -22,4 +22,4 @@ class OperationRead(OperationSchema):
 
 
 class OperationCreate(OperationSchema):
-    user_id: int
+    pass
