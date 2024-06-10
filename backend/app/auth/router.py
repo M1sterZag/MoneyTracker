@@ -6,7 +6,8 @@ from app.utils import jwt_utils
 from app.auth.logic import validate_auth_user, get_current_active_user
 from app.db.database import get_async_session
 from app.schemas.tokens import TokenSchema
-from app.schemas.users import UserCreate, UserRead
+from app.schemas.users import UserCreate, UserRead, UserLogin
+from app.utils.jwt_utils import encode_jwt
 
 router = APIRouter(
     prefix="/auth",
@@ -39,14 +40,16 @@ async def signup_user(
 
 
 @router.post("/login", response_model=TokenSchema)
-def login_user(
-        user: UserRead = Depends(validate_auth_user),
+async def login_user(
+        user: UserLogin,
+        db: AsyncSession = Depends(get_async_session)
 ) -> TokenSchema:
+    user_data = await validate_auth_user(user, db)
     jwt_payload = {
-        "sub": user.id,
-        "username": user.username,
+        "sub": user_data.id,
+        "username": user_data.username,
     }
-    token = jwt_utils.encode_jwt(jwt_payload)
+    token = encode_jwt(jwt_payload)
     return TokenSchema(
         access_token=token,
         token_type="bearer",

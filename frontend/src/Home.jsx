@@ -1,7 +1,23 @@
-// Home.js
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-function Home() {
+function Home({ token }) {
+  if (!token) {
+    return (
+      <div className='flex flex-col items-center justify-center min-h-screen bg-mcgray rounded-lg p-5'>
+        <h1 className="text-white mb-4">Чтобы увидеть информацию о своем аккаунте, зарегистрируйтесь или войдите в аккаунт.</h1>
+        <div className="flex space-x-4">
+          <Link to="/login" className="bg-mcgray text-white p-3 rounded-lg hover:bg-mgreen">
+            Вход
+          </Link>
+          <Link to="/register" className="bg-mcgray text-white p-3 rounded-lg hover:bg-mgreen">
+            Регистрация
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className='bg-mcgray rounded-lg p-5'>
       <div className="categories1 mb-5">

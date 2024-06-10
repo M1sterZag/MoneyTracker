@@ -6,7 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.auth.work_with_db import get_user_by_username, get_user_by_id
 from app.utils import jwt_utils
 from app.db.database import get_async_session
-from app.schemas.users import UserRead
+from app.schemas.users import UserRead, UserLogin
 from app.utils.password_utils import validate_password
 
 oauth2_scheme = OAuth2PasswordBearer(
@@ -15,16 +15,15 @@ oauth2_scheme = OAuth2PasswordBearer(
 
 
 async def validate_auth_user(
-        username: str = Form(),
-        password: str = Form(),
-        db: AsyncSession = Depends(get_async_session)
+        user: UserLogin,
+        db: AsyncSession
 ) -> UserRead:
     unauthed_exc = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Invalid username or password",
     )
-    db_user = await get_user_by_username(db, username)
-    if not db_user or not validate_password(password, db_user.hashed_password):
+    db_user = await get_user_by_username(db, user.username)
+    if not db_user or not validate_password(user.hashed_password, db_user.hashed_password):
         raise unauthed_exc
 
     if not db_user.is_active:
