@@ -15,7 +15,7 @@ router = APIRouter(
 )
 
 
-@router.post("/", response_model=OperationRead)
+@router.post("/add", response_model=OperationRead)
 async def add_operation(
         operation: OperationCreate,
         db: AsyncSession = Depends(get_async_session),
@@ -25,7 +25,7 @@ async def add_operation(
     return operation
 
 
-@router.get("/", response_model=List[OperationRead])
+@router.get("/get", response_model=List[OperationRead])
 async def get_user_operations(
     current_user: UserRead = Depends(get_current_active_user),
     db: AsyncSession = Depends(get_async_session),
@@ -33,7 +33,7 @@ async def get_user_operations(
     return await get_operations_by_user(db, current_user.id)
 
 
-@router.delete("/{operation_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/delete{operation_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_user_operation(
     operation_id: int,
     current_user: UserRead = Depends(get_current_active_user),
