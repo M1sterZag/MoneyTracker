@@ -4,6 +4,8 @@ import axios from 'axios';
 function Home({ token }) {
   const [incomeOperations, setIncomeOperations] = useState([]);
   const [expenseOperations, setExpenseOperations] = useState([]);
+  const [totalIncome, setTotalIncome] = useState(0);
+  const [totalExpense, setTotalExpense] = useState(0);
 
   useEffect(() => {
     const fetchOperations = async () => {
@@ -22,8 +24,14 @@ function Home({ token }) {
         const sortedIncome = sortOperations(groupedIncome);
         const sortedExpense = sortOperations(groupedExpense);
 
+        // Вычисляем общую сумму доходов и расходов
+        const totalIncomeAmount = calculateTotalAmount(groupedIncome);
+        const totalExpenseAmount = calculateTotalAmount(groupedExpense);
+
         setIncomeOperations(sortedIncome);
         setExpenseOperations(sortedExpense);
+        setTotalIncome(totalIncomeAmount);
+        setTotalExpense(totalExpenseAmount);
       } catch (error) {
         console.error('Ошибка получения операций пользователя:', error.response?.data?.detail || error.message);
       }
@@ -56,6 +64,11 @@ function Home({ token }) {
     return operations.sort((a, b) => b.amount - a.amount);
   };
 
+  // Функция для вычисления общей суммы операций
+  const calculateTotalAmount = (operations) => {
+    return operations.reduce((total, operation) => total + operation.amount, 0);
+  };
+
   const renderTopOperations = (operations, title) => {
     return (
       <div className="categories mb-5">
@@ -80,20 +93,12 @@ function Home({ token }) {
     <div className='bg-mcgray rounded-lg p-5'>
       {renderTopOperations(expenseOperations, 'Топ 3 самых затратных категорий')}
       {renderTopOperations(incomeOperations, 'Топ 3 самых прибыльных категорий')}
-      <div className="diagram text-white">
-        <div className="head flex justify-between items-center w-full mb-5">
-          <h3>Операции по периодам</h3>
-          <div className="p-2 pt-2 pb-2 bg-mcblack rounded-lg">
-            <h3 className='m-0 cursor-pointer'>За неделю</h3>
-          </div>
+      <div className="statistics text-white">
+        <div className="total-income mb-4">
+          <h3>Общая сумма доходов: {totalIncome}₽</h3>
         </div>
-        <div className="diagram-image bg-mcblack rounded-lg">
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
+        <div className="total-expense mb-4">
+          <h3>Общая сумма расходов: {totalExpense}₽</h3>
         </div>
       </div>
     </div>
