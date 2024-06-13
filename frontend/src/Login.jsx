@@ -29,24 +29,24 @@ const Login = ({ setToken }) => {
         <h2 className="text-white text-center mb-4">Авторизация</h2>
         <form onSubmit={handleSubmit}>
           {error && <p className="text-red-500 text-center mb-4">{error}</p>}
-          <div className="mb-4">
+          <div className="mb-4 box-border focus-within:ring-2 focus-within:ring-mgreen rounded-lg">
             <input
               type="text"
               id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full box-border placeholder-white p-3 rounded-lg border-none bg-mcgray text-white border border-mcgray"
+              className="w-full box-border placeholder-white p-3 rounded-lg border-none bg-mcgray text-white focus:outline-none"
               placeholder="Имя пользователя..."
               required
             />
           </div>
-          <div className="mb-6">
+          <div className="mb-6 box-border focus-within:ring-2 focus-within:ring-mgreen rounded-lg">
             <input
               type="password"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full box-border placeholder-white p-3 rounded-lg border-none bg-mcgray text-white border border-mcgray"
+              className="w-full box-border placeholder-white p-3 rounded-lg border-none bg-mcgray text-white focus:outline-none"
               placeholder="Пароль..."
               required
             />
@@ -60,7 +60,7 @@ const Login = ({ setToken }) => {
             </Link>
             <button
               type="submit"
-              className="bg-mcgray border-none text-white p-3 rounded-lg hover:bg-mgreen"
+              className="bg-mcgray border-none text-white p-3 rounded-lg hover:bg-mgreen cursor-pointer"
             >
               Вход
             </button>
