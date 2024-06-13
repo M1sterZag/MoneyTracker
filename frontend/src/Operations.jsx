@@ -22,7 +22,8 @@ function Operations({ token }) {
             Authorization: `Bearer ${token}`
           }
         });
-        setOperations(response.data);
+        const sortedOperations = response.data.sort((a, b) => new Date(b.date) - new Date(a.date));
+        setOperations(sortedOperations);
       } catch (error) {
         console.error('Ошибка получения операций пользователя:', error.response?.data?.detail || error.message);
       }
@@ -41,7 +42,9 @@ function Operations({ token }) {
           Authorization: `Bearer ${token}`
         }
       });
-      setOperations([...operations, response.data]);
+      const updatedOperations = [response.data, ...operations];
+      const sortedOperations = updatedOperations.sort((a, b) => new Date(b.date) - new Date(a.date));
+      setOperations(sortedOperations);
       setShowForm(false);
       setNewOperation({ title: '', amount: '', type: 'expense', date: '' });
     } catch (error) {
@@ -56,7 +59,8 @@ function Operations({ token }) {
           Authorization: `Bearer ${token}`
         }
       });
-      setOperations(operations.filter(operation => operation.id !== operationId));
+      const updatedOperations = operations.filter(operation => operation.id !== operationId);
+      setOperations(updatedOperations);
     } catch (error) {
       console.error('Ошибка удаления операции:', error.response?.data?.detail || error.message);
     }
@@ -85,7 +89,7 @@ function Operations({ token }) {
           type="text"
           id="search"
           placeholder="Конкретная операция..."
-          className="bg-mcgray text-white border-none placeholder-white focus:outline-none"
+          className="bg-mcgray text-white border-none placeholder-white focus:outline-none w-full"
           value={searchTerm}
           onChange={handleSearch}
         />
@@ -130,7 +134,7 @@ function Operations({ token }) {
       <div className="">
         <button
           onClick={() => setShowForm(true)}
-          className="bg-mcgray text-white p-3 rounded-lg border-none hover:bg-mgreen"
+          className="bg-mcgray text-white p-3 rounded-lg border-none hover:bg-mgreen cursor-pointer"
         >
           Добавить операцию
         </button>
