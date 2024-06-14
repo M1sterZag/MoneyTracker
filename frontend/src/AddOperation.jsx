@@ -6,38 +6,38 @@ function AddOperation({ handleCancel, handleAddOperation, handleChange, newOpera
       <div className="bg-mcblack p-10 rounded-lg w-full max-w-md">
         <h2 className="text-mgreen text-center text-2xl mb-6">Добавить операцию</h2>
         <form onSubmit={handleAddOperation} className="w-full">
-          <div className="mb-4">
+          <div className="mb-4 focus-within:ring-2 focus-within:ring-mgreen rounded-lg">
             <input
               type="text"
               id="title"
               name="title"
               value={newOperation.title}
               onChange={handleChange}
-              className="w-full box-border border-none p-3 rounded-lg bg-mcgray text-white border border-mcgray placeholder-white"
+              className="w-full box-border border-none p-3 rounded-lg bg-mcgray text-white border border-mcgray placeholder-white focus:outline-none"
               placeholder="Название категории..."
               required
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-4 focus-within:ring-2 focus-within:ring-mgreen rounded-lg">
             <input
               type="number"
               id="amount"
               name="amount"
               value={newOperation.amount}
               onChange={handleChange}
-              className="w-full box-border border-none p-3 rounded-lg bg-mcgray text-white border border-mcgray placeholder-white"
+              className="w-full box-border border-none p-3 rounded-lg bg-mcgray text-white border border-mcgray placeholder-white focus:outline-none"
               placeholder="Цена..."
               required
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-4 focus-within:ring-2 focus-within:ring-mgreen rounded-lg">
             <input
               type="date"
               id="date"
               name="date"
               value={newOperation.date}
               onChange={handleChange}
-              className="w-full box-border border-none p-3 rounded-lg bg-mcgray text-white border border-mcgray placeholder-white"
+              className="w-full box-border border-none p-3 rounded-lg bg-mcgray text-white border border-mcgray placeholder-white focus:outline-none"
               required
             />
           </div>
