@@ -33,11 +33,11 @@ function AppContent({ token, setToken }) {
     <div className="flex flex-col h-full">
       {!isAuthPage && <Header setToken={setToken} token={token} />}
       <div className="flex justify-center">
-        <div className="panel bg-mcblack p-10 flex rounded-lg">
+        <div className="panel bg-mcblack p-10 flex rounded-lg w-full">
           <Routes>
             <Route path="/home" element={<Home token={token} />} />
             <Route path="/operations" element={<Operations token={token} />} />
-            <Route path="/graphics" element={<Graphics />} />
+            <Route path="/graphics" element={<Graphics token={token} />} />
             <Route path="/" element={<Login setToken={setToken} />} />
             <Route path="/register" element={<Register />} />
           </Routes>
