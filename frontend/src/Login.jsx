@@ -16,7 +16,7 @@ const Login = ({ setToken }) => {
         password,
       });
       setToken(response.data.access_token);
-      navigate('/'); // Перенаправление на главную страницу
+      navigate('/home'); // Перенаправление на главную страницу
     } catch (error) {
       setError('Ошибка авторизации. Проверьте имя пользователя и пароль.');
     }

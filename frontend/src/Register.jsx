@@ -23,7 +23,7 @@ const Register = () => {
       });
       setSuccess(true);
       setTimeout(() => {
-        navigate('/login');
+        navigate('/');
       }, 3000); // Перенаправление через 3 секунды
     } catch (error) {
       if (error.response && error.response.data.detail === 'Username already exists') {

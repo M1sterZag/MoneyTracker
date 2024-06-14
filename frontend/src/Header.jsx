@@ -9,7 +9,7 @@ function Header({ setToken, token }) {
   const handleLogout = () => {
     localStorage.removeItem('token');
     setToken('');
-    navigate('/login');
+    navigate('/');
   };
 
   useEffect(() => {
@@ -35,13 +35,13 @@ function Header({ setToken, token }) {
     <div className="header bg-mcgray p-5 text-center flex justify-between items-center rounded-lg mx-64 mb-5">
       <h1 className="text-mgreen">Money Tracker</h1>
       <div className="flex items-center justify-center flex-grow">
-        <NavLink to="/" className="cursor-pointer no-underline text-white hover:text-mgreen mx-4" activeClassName="text-mgreen">
+        <NavLink to="/home" className="cursor-pointer no-underline text-white hover:text-mgreen mx-4" activeClassName="text-mgreen">
           <h2>Главная</h2>
         </NavLink>
         <NavLink to="/operations" className="cursor-pointer no-underline text-white hover:text-mgreen mx-4" activeClassName="text-mgreen">
           <h2>Операции</h2>
         </NavLink>
-        <NavLink to="/download-report" className="cursor-pointer no-underline text-white hover:text-mgreen mx-4" activeClassName="text-mgreen">
+        <NavLink to="/graphics" className="cursor-pointer no-underline text-white hover:text-mgreen mx-4" activeClassName="text-mgreen">
           <h2>Графики</h2>
         </NavLink>
       </div>
