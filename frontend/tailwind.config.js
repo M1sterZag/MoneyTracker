@@ -14,7 +14,10 @@ export default {
       },
       spacing: {
         '192': '48rem',
-      }
+      },
+      fontFamily: {
+        calibri: ['Calibri', 'Arial', 'sans-serif'],
+      },
     },
   },
   plugins: [],
