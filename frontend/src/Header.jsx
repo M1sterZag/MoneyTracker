@@ -17,8 +17,8 @@ function Header({ setToken, token }) {
       try {
         const response = await axios.get('http://localhost:8000/api/auth/me', {
           headers: {
-            Authorization: `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         });
         setUsername(response.data.username);
       } catch (error) {
@@ -32,16 +32,31 @@ function Header({ setToken, token }) {
   }, [token]);
 
   return (
-    <div className="header bg-mcgray p-5 text-center flex justify-between items-center rounded-lg mx-64 mb-5">
+    <div className="header bg-mcgray p-4 text-center flex justify-between items-center rounded-lg w-full max-w-5xl mb-5">
       <h1 className="text-mgreen">Money Tracker</h1>
       <div className="flex items-center justify-center flex-grow">
-        <NavLink to="/home" className="cursor-pointer no-underline text-white hover:text-mgreen mx-4" activeClassName="text-mgreen">
+        <NavLink
+          to="/home"
+          className={({ isActive }) =>
+            `cursor-pointer no-underline text-white hover:text-mgreen mx-4 ${isActive ? 'text-mgreen' : ''}`
+          }
+        >
           <h2>Главная</h2>
         </NavLink>
-        <NavLink to="/operations" className="cursor-pointer no-underline text-white hover:text-mgreen mx-4" activeClassName="text-mgreen">
+        <NavLink
+          to="/operations"
+          className={({ isActive }) =>
+            `cursor-pointer no-underline text-white hover:text-mgreen mx-4 ${isActive ? 'text-mgreen' : ''}`
+          }
+        >
           <h2>Операции</h2>
         </NavLink>
-        <NavLink to="/graphics" className="cursor-pointer no-underline text-white hover:text-mgreen mx-4" activeClassName="text-mgreen">
+        <NavLink
+          to="/graphics"
+          className={({ isActive }) =>
+            `cursor-pointer no-underline text-white hover:text-mgreen mx-4 ${isActive ? 'text-mgreen' : ''}`
+          }
+        >
           <h2>Графики</h2>
         </NavLink>
       </div>
