@@ -16,15 +16,12 @@ function Home({ token }) {
           }
         });
 
-        // Группируем операции по типу и названию
         const groupedIncome = groupOperations(response.data.filter(operation => operation.type === 'income'));
         const groupedExpense = groupOperations(response.data.filter(operation => operation.type === 'expense'));
 
-        // Сортируем операции по сумме в обратном порядке
         const sortedIncome = sortOperations(groupedIncome);
         const sortedExpense = sortOperations(groupedExpense);
 
-        // Вычисляем общую сумму доходов и расходов
         const totalIncomeAmount = calculateTotalAmount(groupedIncome);
         const totalExpenseAmount = calculateTotalAmount(groupedExpense);
 
@@ -42,7 +39,6 @@ function Home({ token }) {
     }
   }, [token]);
 
-  // Функция для группировки операций по типу и названию
   const groupOperations = (operations) => {
     const grouped = {};
     operations.forEach(operation => {
@@ -59,26 +55,24 @@ function Home({ token }) {
     return Object.values(grouped);
   };
 
-  // Функция для сортировки операций по сумме в обратном порядке
   const sortOperations = (operations) => {
     return operations.sort((a, b) => b.amount - a.amount);
   };
 
-  // Функция для вычисления общей суммы операций
   const calculateTotalAmount = (operations) => {
     return operations.reduce((total, operation) => total + operation.amount, 0);
   };
 
   const renderTopOperations = (operations, title) => {
     return (
-      <div className="categories mb-5">
-        <h1 className="text-white mb-4">{title}</h1>
+      <div className="categories mb-8">
+        <h2 className="text-white text-2xl font-semibold mb-4 text-center">{title}</h2>
         {operations.length >= 3 ? (
-          <div className="cards grid gap-x-2 grid-cols-3">
+          <div className="cards grid gap-4 grid-cols-1 md:grid-cols-3">
             {operations.slice(0, 3).map((operation, index) => (
-              <div key={index} className="card text-white bg-mcblack p-5 rounded-lg">
-                <h3>{operation.title}</h3>
-                <h3>Сумма: {operation.amount}₽</h3>
+              <div key={index} className="card text-white bg-mcblack p-5 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
+                <h3 className="text-2xl font-semibold">{operation.title}</h3>
+                <p className="mt-2 text-lg">Сумма: <span className="font-bold">{operation.amount}₽</span></p>
               </div>
             ))}
           </div>
@@ -90,15 +84,15 @@ function Home({ token }) {
   };
 
   return (
-    <div className='bg-mcgray rounded-lg p-5'>
+    <div className='bg-mcgray rounded-lg p-8 w-full'>
       {renderTopOperations(expenseOperations, 'Топ 3 самых затратных категорий')}
       {renderTopOperations(incomeOperations, 'Топ 3 самых прибыльных категорий')}
-      <div className="statistics text-white">
-        <div className="total-income mb-4">
-          <h3>Общая сумма доходов: {totalIncome}₽</h3>
+      <div className="statistics text-white mt-8 flex justify-between">
+        <div className="total-income p-4 bg-mcblack rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 flex-1">
+          <h3 className="text-xl font-semibold">Общая сумма доходов: <span className="font-bold">{totalIncome}₽</span></h3>
         </div>
-        <div className="total-expense mb-4">
-          <h3>Общая сумма расходов: {totalExpense}₽</h3>
+        <div className="total-expense p-4 bg-mcblack rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 flex-1 ml-4">
+          <h3 className="text-xl font-semibold">Общая сумма расходов: <span className="font-bold">{totalExpense}₽</span></h3>
         </div>
       </div>
     </div>
