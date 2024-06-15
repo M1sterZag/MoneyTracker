@@ -30,10 +30,9 @@ function AppContent({ token, setToken }) {
   const isAuthPage = location.pathname === '/' || location.pathname === '/register';
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col items-center">
       {!isAuthPage && <Header setToken={setToken} token={token} />}
-      <div className="flex justify-center">
-        <div className="panel bg-mcblack p-10 flex rounded-lg w-full">
+      <div className="flex flex-1 justify-center items-center w-full max-w-5xl">
           <Routes>
             <Route path="/home" element={<Home token={token} />} />
             <Route path="/operations" element={<Operations token={token} />} />
@@ -41,7 +40,6 @@ function AppContent({ token, setToken }) {
             <Route path="/" element={<Login setToken={setToken} />} />
             <Route path="/register" element={<Register />} />
           </Routes>
-        </div>
       </div>
     </div>
   );
