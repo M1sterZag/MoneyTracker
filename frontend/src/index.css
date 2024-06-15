@@ -2,13 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/*@font-face {*/
-/*  font-family: 'Roboto';*/
-/*  src: url('./assets/fonts/Roboto-Medium.ttf') format('ttf');*/
-/*  font-weight: normal;*/
-/*  font-style: normal;*/
-/*}*/
-
 *,
 *::before,
 *::after {
@@ -20,9 +13,6 @@ body {
 }
 
 :root {
-  /*font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;*/
-  /*line-height: 1.5;*/
-  /*font-weight: 400;*/
 }
 
 input::-webkit-outer-spin-button,
@@ -37,8 +27,10 @@ body {
 }
 
 html{
-  height: 100vh;
-  min-height: 100vh;
+  min-height: 100%;
+}
+body {
+    min-height: 100%;
 }
 
 h1, h2, h3 {
