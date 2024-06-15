@@ -94,7 +94,7 @@ function Operations({ token }) {
             type="text"
             id="search"
             placeholder="Конкретная операция..."
-            className="bg-mcgray text-white border-none placeholder-white focus:outline-none w-full px-3 py-2 rounded-lg"
+            className="bg-mcgray text-white border-none placeholder-white focus:outline-none w-full px-3 py-2 rounded-lg text-lg"
             value={searchTerm}
             onChange={handleSearch}
           />
@@ -110,7 +110,7 @@ function Operations({ token }) {
       {loading ? (
         <div className="text-white">Загрузка...</div>
       ) : (
-        <div className="overflow-x-auto w-full">
+        <div className="overflow-x-auto w-full rounded-lg">
           <table className="text-white border-separate border-spacing-x-0 border-spacing-2 w-full bg-mcgray">
             <thead className="">
               <tr>

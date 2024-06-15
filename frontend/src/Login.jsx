@@ -35,7 +35,7 @@ const Login = ({ setToken }) => {
               id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full box-border placeholder-white p-3 rounded-lg border-none bg-mcgray text-white focus:outline-none"
+              className="w-full box-border placeholder-white p-3 rounded-lg border-none bg-mcgray text-white text-lg focus:outline-none"
               placeholder="Имя пользователя..."
               required
             />
@@ -46,7 +46,7 @@ const Login = ({ setToken }) => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full box-border placeholder-white p-3 rounded-lg border-none bg-mcgray text-white focus:outline-none"
+              className="w-full box-border placeholder-white p-3 rounded-lg border-none bg-mcgray text-white text-lg focus:outline-none"
               placeholder="Пароль..."
               required
             />
@@ -54,13 +54,13 @@ const Login = ({ setToken }) => {
           <div className="flex justify-between w-full">
             <Link
               to="/register"
-              className="bg-mcgray border-none text-white p-3 rounded-lg hover:bg-mgreen no-underline"
+              className="bg-mcgray border-none text-white p-3 rounded-lg hover:bg-mgreen no-underline text-lg"
             >
               Регистрация
             </Link>
             <button
               type="submit"
-              className="bg-mcgray border-none text-white p-3 rounded-lg hover:bg-mgreen cursor-pointer"
+              className="bg-mcgray border-none text-white p-3 rounded-lg hover:bg-mgreen cursor-pointer text-lg"
             >
               Вход
             </button>

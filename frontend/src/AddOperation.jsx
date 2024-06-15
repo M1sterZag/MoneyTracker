@@ -2,9 +2,9 @@ import React from 'react';
 
 function AddOperation({ handleCancel, handleAddOperation, handleChange, newOperation }) {
   return (
-    <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
+    <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-80 flex items-center justify-center">
       <div className="bg-mcblack p-10 rounded-lg w-full max-w-md">
-        <h2 className="text-mgreen text-center text-2xl mb-6">Добавить операцию</h2>
+        <h2 className="text-mgreen text-center text-3xl mb-6">Добавить операцию</h2>
         <form onSubmit={handleAddOperation} className="w-full">
           <div className="mb-4 focus-within:ring-2 focus-within:ring-mgreen rounded-lg">
             <input
@@ -13,7 +13,7 @@ function AddOperation({ handleCancel, handleAddOperation, handleChange, newOpera
               name="title"
               value={newOperation.title}
               onChange={handleChange}
-              className="w-full box-border border-none p-3 rounded-lg bg-mcgray text-white border border-mcgray placeholder-white focus:outline-none"
+              className="w-full box-border border-none p-3 rounded-lg bg-mcgray text-white text-lg border border-mcgray placeholder-white focus:outline-none"
               placeholder="Название категории..."
               required
             />
@@ -25,7 +25,7 @@ function AddOperation({ handleCancel, handleAddOperation, handleChange, newOpera
               name="amount"
               value={newOperation.amount}
               onChange={handleChange}
-              className="w-full box-border border-none p-3 rounded-lg bg-mcgray text-white border border-mcgray placeholder-white focus:outline-none"
+              className="w-full box-border border-none p-3 rounded-lg bg-mcgray text-white text-lg border border-mcgray placeholder-white focus:outline-none"
               placeholder="Цена..."
               required
             />
@@ -37,13 +37,13 @@ function AddOperation({ handleCancel, handleAddOperation, handleChange, newOpera
               name="date"
               value={newOperation.date}
               onChange={handleChange}
-              className="w-full box-border border-none p-3 rounded-lg bg-mcgray text-white border border-mcgray placeholder-white focus:outline-none"
+              className="w-full box-border border-none p-3 rounded-lg bg-mcgray text-white text-lg border border-mcgray placeholder-white focus:outline-none"
               required
             />
           </div>
-          <div className="mb-4">
-            <div className="flex">
-              <label className="flex items-center mr-3 bg-mcgray p-2 pl-1 rounded-lg">
+          <div className="mb-4 flex justify-center">
+            <div className="flex space-x-3">
+              <label className="flex items-center bg-mcgray p-2 pl-1 rounded-lg">
                 <input
                   type="radio"
                   name="type"
@@ -53,7 +53,7 @@ function AddOperation({ handleCancel, handleAddOperation, handleChange, newOpera
                   className=""
                   required
                 />
-                <span className="text-white">Приход</span>
+                <span className="text-white text-lg ml-1">Приход</span>
               </label>
               <label className="flex items-center bg-mcgray p-2 pl-1 rounded-lg">
                 <input
@@ -65,7 +65,7 @@ function AddOperation({ handleCancel, handleAddOperation, handleChange, newOpera
                   className=""
                   required
                 />
-                <span className="text-white">Расход</span>
+                <span className="text-white text-lg ml-1">Расход</span>
               </label>
             </div>
           </div>
@@ -73,13 +73,13 @@ function AddOperation({ handleCancel, handleAddOperation, handleChange, newOpera
             <button
               type="button"
               onClick={handleCancel}
-              className="border-none bg-mcgray text-white p-3 rounded-lg hover:bg-red-700"
+              className="border-none bg-mcgray text-white text-lg p-4 rounded-lg hover:bg-red-700 transition-colors duration-300"
             >
               Отмена
             </button>
             <button
               type="submit"
-              className="border-none bg-mcgray text-white p-3 rounded-lg hover:bg-mgreen"
+              className="border-none bg-mcgray text-white text-lg p-4 rounded-lg hover:bg-mgreen transition-colors duration-300"
             >
               Сохранить
             </button>
