@@ -34,6 +34,10 @@ const Register = () => {
     }
   };
 
+  const handleCancel = () => {
+    navigate('/');
+  };
+
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="bg-mcblack p-10 rounded-lg">
@@ -52,7 +56,7 @@ const Register = () => {
                 id="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="w-full box-border placeholder-white p-3 rounded-lg border-none bg-mcgray text-white focus:outline-none"
+                className="w-full box-border placeholder-white p-3 rounded-lg border-none bg-mcgray text-white text-lg focus:outline-none"
                 placeholder="Имя пользователя..."
                 required
               />
@@ -63,7 +67,7 @@ const Register = () => {
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full box-border placeholder-white p-3 rounded-lg border-none bg-mcgray text-white focus:outline-none"
+                className="w-full box-border placeholder-white p-3 rounded-lg border-none bg-mcgray text-white text-lg focus:outline-none"
                 placeholder="Пароль..."
                 required
               />
@@ -74,17 +78,26 @@ const Register = () => {
                 id="confirmPassword"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="w-full box-border placeholder-white p-3 rounded-lg border-none bg-mcgray text-white focus:outline-none"
+                className="w-full box-border placeholder-white p-3 rounded-lg border-none bg-mcgray text-white text-lg focus:outline-none"
                 placeholder="Повторите пароль..."
                 required
               />
             </div>
-            <button
-              type="submit"
-              className="bg-mcgray border-none text-white p-3 rounded-lg hover:bg-mgreen w-full cursor-pointer"
-            >
-              Регистрация
-            </button>
+            <div className="flex justify-between w-full">
+              <button
+                type="button"
+                onClick={handleCancel}
+                className="bg-mcgray border-none text-white p-3 rounded-lg hover:bg-red-700 w-full cursor-pointer text-lg mr-2"
+              >
+                Отмена
+              </button>
+              <button
+                type="submit"
+                className="bg-mcgray border-none text-white p-3 rounded-lg hover:bg-mgreen w-full cursor-pointer text-lg ml-2"
+              >
+                Регистрация
+              </button>
+            </div>
           </form>
         )}
       </div>
