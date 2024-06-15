@@ -135,7 +135,7 @@ function Operations({ token }) {
                   <td className="p-3 text-lg">{new Date(operation.date).toLocaleDateString()}</td>
                   <td className="p-3">
                     <button
-                      className="bg-mcgray border-none rounded-lg focus:outline-none cursor-pointer"
+                      className="bg-inherit border-none rounded-lg focus:outline-none cursor-pointer"
                       onClick={() => handleDeleteOperation(operation.id)}
                     >
                       <FaTrashAlt className="text-red-600 w-5 h-5 hover:text-red-800" />
