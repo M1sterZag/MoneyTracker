@@ -23,7 +23,7 @@ async def get_operations_by_user(db: AsyncSession, user_id: int):
 
 
 async def delete_operation(db: AsyncSession, user_id: int, operation_id: int) -> bool:
-    result = await db.execute(select(Operation).filter(Operation.id == operation_id, Operation.user_id == user_id))
+    result = await db.execute(select(Operation).where(Operation.id == operation_id, Operation.user_id == user_id))
     operation = result.scalars().first()
     if operation:
         await db.delete(operation)

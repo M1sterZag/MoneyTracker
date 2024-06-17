@@ -87,7 +87,7 @@ function Operations({ token }) {
   });
 
   return (
-    <div className="text-white flex flex-col items-center w-full">
+    <div className="text-white flex flex-col items-center w-full max-w-4xl mx-auto">
       <div className="flex justify-between items-center mb-3 w-full">
         <div className="flex items-center w-full bg-mcgray p-3 rounded-lg box-border focus-within:ring-2 focus-within:ring-mgreen">
           <input
@@ -111,8 +111,8 @@ function Operations({ token }) {
         <div className="text-white">Загрузка...</div>
       ) : (
         <div className="overflow-x-auto w-full rounded-lg">
-          <table className="text-white border-separate border-spacing-x-0 border-spacing-2 w-full bg-mcgray">
-            <thead className="">
+          <table className="text-white border-separate border-spacing-2 w-full bg-mcgray max-w-full mx-auto">
+            <thead>
               <tr>
                 <th className="p-3 text-left text-lg">Сумма</th>
                 <th className="p-3 text-left text-lg">Категория</th>

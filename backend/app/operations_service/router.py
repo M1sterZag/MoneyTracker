@@ -33,7 +33,7 @@ async def get_user_operations(
     return await get_operations_by_user(db, current_user.id)
 
 
-@router.delete("/delete{operation_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/delete/{operation_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_user_operation(
     operation_id: int,
     current_user: UserRead = Depends(get_current_active_user),
