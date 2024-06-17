@@ -249,7 +249,7 @@ function Graphics({ token }) {
 
       <div className="text-center">
         <button
-          className="bg-mcblack text-white p-3 rounded-lg border-none hover:bg-mgreen cursor-pointer ml-3 text-base font-medium transition-colors duration-300 whitespace-nowrap"
+          className="bg-mcblack text-white p-3 rounded-lg border-none hover:bg-mgreen cursor-pointer text-base font-medium transition-colors duration-300 whitespace-nowrap"
           onClick={handleDownloadReports}
         >
           Скачать отчеты
