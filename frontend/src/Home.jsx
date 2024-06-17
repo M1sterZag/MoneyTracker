@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import ActivityCalendar from "./ActivityCalendar.jsx";
 
 function Home({ token }) {
   const [incomeOperations, setIncomeOperations] = useState([]);
@@ -87,7 +88,7 @@ function Home({ token }) {
     <div className='bg-mcgray rounded-lg p-8 w-full'>
       {renderTopOperations(expenseOperations, 'Топ 3 самых затратных категорий')}
       {renderTopOperations(incomeOperations, 'Топ 3 самых прибыльных категорий')}
-      <div className="statistics text-white mt-8 flex justify-between">
+      <div className="statistics text-white mt-8 flex justify-between mb-8">
         <div className="total-income p-4 bg-mcblack rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 flex-1">
           <h3 className="text-xl font-semibold">Общая сумма доходов: <span className="font-bold">{totalIncome}₽</span></h3>
         </div>
@@ -95,6 +96,7 @@ function Home({ token }) {
           <h3 className="text-xl font-semibold">Общая сумма расходов: <span className="font-bold">{totalExpense}₽</span></h3>
         </div>
       </div>
+      <ActivityCalendar token={token} />
     </div>
   );
 }
