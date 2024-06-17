@@ -110,50 +110,50 @@ function Operations({ token }) {
       {loading ? (
         <div className="text-white">Загрузка...</div>
       ) : (
-        <div className="overflow-x-auto w-full rounded-lg">
-          <table className="text-white border-separate border-spacing-2 w-full bg-mcgray max-w-full mx-auto">
-            <thead>
+          <div className="overflow-x-auto w-full rounded-lg">
+            <table className="text-white border-separate border-spacing-2 w-full bg-mcgray max-w-full mx-auto table-fixed">
+              <thead>
               <tr>
-                <th className="p-3 text-left text-lg">Сумма</th>
-                <th className="p-3 text-left text-lg">Категория</th>
-                <th className="p-3 text-left text-lg">Дата</th>
-                <th className="p-3 text-left text-lg"></th>
+                <th className="p-1 text-center text-lg">Сумма</th>
+                <th className="p-1 text-center text-lg">Категория</th>
+                <th className="p-1 text-center text-lg">Дата</th>
+                <th className="p-1 text-center text-lg w-10"></th>
               </tr>
-            </thead>
-            <tbody>
+              </thead>
+              <tbody>
               {filteredOperations.map((operation) => (
-                <tr key={operation.id} className="hover:bg-mgray rounded-lg transition-colors duration-300">
-                  <td className="p-3 flex items-center text-lg">
-                    {operation.type === 'income' ? (
-                      <FaArrowUp className="text-green-500 mr-1" />
-                    ) : (
-                      <FaArrowDown className="text-red-500 mr-1" />
-                    )}
-                    {operation.amount}₽
-                  </td>
-                  <td className="p-3 text-lg">{operation.title}</td>
-                  <td className="p-3 text-lg">{new Date(operation.date).toLocaleDateString()}</td>
-                  <td className="p-3">
-                    <button
-                      className="bg-inherit border-none rounded-lg focus:outline-none cursor-pointer"
-                      onClick={() => handleDeleteOperation(operation.id)}
-                    >
-                      <FaTrashAlt className="text-red-600 w-5 h-5 hover:text-red-800" />
-                    </button>
-                  </td>
-                </tr>
+                  <tr key={operation.id} className="hover:bg-mgray rounded-lg transition-colors duration-300">
+                    <td className="p-1 flex justify-center items-center text-lg">
+                      {operation.type === 'income' ? (
+                          <FaArrowUp className="text-green-500 mr-1"/>
+                      ) : (
+                          <FaArrowDown className="text-red-500 mr-1"/>
+                      )}
+                      {operation.amount}₽
+                    </td>
+                    <td className="p-1 text-lg text-center">{operation.title}</td>
+                    <td className="p-1 text-lg text-center">{new Date(operation.date).toLocaleDateString()}</td>
+                    <td className="p-1 text-center">
+                      <button
+                          className="bg-inherit border-none rounded-lg focus:outline-none cursor-pointer"
+                          onClick={() => handleDeleteOperation(operation.id)}
+                      >
+                        <FaTrashAlt className="text-red-600 w-5 h-5 hover:text-red-800"/>
+                      </button>
+                    </td>
+                  </tr>
               ))}
-            </tbody>
-          </table>
-        </div>
+              </tbody>
+            </table>
+          </div>
       )}
       {showForm && (
-        <AddOperation
-          handleCancel={handleCancel}
-          handleAddOperation={handleAddOperation}
-          handleChange={handleChange}
-          newOperation={newOperation}
-        />
+          <AddOperation
+              handleCancel={handleCancel}
+              handleAddOperation={handleAddOperation}
+              handleChange={handleChange}
+              newOperation={newOperation}
+          />
       )}
     </div>
   );
