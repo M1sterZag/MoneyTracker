@@ -37,7 +37,7 @@ const ActivityCalendar = ({ token }) => {
   }, [token]);
 
   return (
-    <div className="bg-mcblack p-5 rounded-lg shadow-lg mt-8">
+    <div className="bg-mcblack p-5 rounded-lg shadow-lg">
       <h2 className="text-white text-2xl font-semibold mb-4 text-center">Календарь активности</h2>
       <CalendarHeatmap
         startDate={new Date(new Date().setFullYear(new Date().getFullYear() - 1))}

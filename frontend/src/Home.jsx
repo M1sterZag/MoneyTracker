@@ -66,7 +66,7 @@ function Home({ token }) {
 
   const renderTopOperations = (operations, title) => {
     return (
-      <div className="categories mb-8">
+      <div className="categories mb-5">
         <h2 className="text-white text-2xl font-semibold mb-4 text-center">{title}</h2>
         {operations.length >= 3 ? (
           <div className="cards grid gap-4 grid-cols-1 md:grid-cols-3">
@@ -88,7 +88,7 @@ function Home({ token }) {
     <div className='bg-mcgray rounded-lg p-8 w-full'>
       {renderTopOperations(expenseOperations, 'Топ 3 самых затратных категорий')}
       {renderTopOperations(incomeOperations, 'Топ 3 самых прибыльных категорий')}
-      <div className="statistics text-white mt-8 flex justify-between mb-8">
+      <div className="statistics text-white my-5 flex justify-between">
         <div className="total-income p-4 bg-mcblack rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 flex-1">
           <h3 className="text-xl font-semibold">Общая сумма доходов: <span className="font-bold">{totalIncome}₽</span></h3>
         </div>
