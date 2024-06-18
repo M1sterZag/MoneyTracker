@@ -35,7 +35,6 @@ function Graphics({ token }) {
         });
         const operations = response.data;
 
-        // Преобразование данных для линейного графика
         const transformedMonthlyData = operations.reduce((acc, operation) => {
           const month = new Date(operation.date).toLocaleString('default', { month: 'short' });
           const existing = acc.find(item => item.month === month);
@@ -55,7 +54,6 @@ function Graphics({ token }) {
           return acc;
         }, []);
 
-        // Преобразование данных для столбчатой диаграммы
         const totalIncome = operations
           .filter(op => op.type === 'income')
           .reduce((sum, op) => sum + op.amount, 0);
@@ -72,7 +70,6 @@ function Graphics({ token }) {
           },
         ];
 
-        // Группировка операций по названию и типу
         const groupByTitle = (ops, type) => {
           return ops
             .filter(op => op.type === type)
@@ -90,7 +87,6 @@ function Graphics({ token }) {
         const groupedIncomeData = groupByTitle(operations, 'income');
         const groupedExpenseData = groupByTitle(operations, 'expense');
 
-        // Сортировка данных по значению и выбор топ-10
         const transformedIncomeData = groupedIncomeData
           .sort((a, b) => b.value - a.value)
           .slice(0, 10);

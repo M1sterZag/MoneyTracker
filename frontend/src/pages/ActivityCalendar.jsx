@@ -16,10 +16,10 @@ const ActivityCalendar = ({ token }) => {
         });
         const data = response.data;
         const dates = data.reduce((acc, operation) => {
-          const date = operation.date.split('T')[0];  // Извлекаем только дату
+          const date = operation.date.split('T')[0];
           const found = acc.find(item => item.date === date);
           if (found) {
-            found.count += 1;  // Увеличиваем количество операций в этот день
+            found.count += 1;
           } else {
             acc.push({ date, count: 1 });
           }
