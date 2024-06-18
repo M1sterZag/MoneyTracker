@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
-import Home from './Home';
-import Operations from './Operations';
-import Graphics from './Graphics.jsx';
-import Header from './Header.jsx';
-import Login from './Login';
-import Register from './Register';
+import Home from './pages/Home.jsx';
+import Operations from './pages/Operations.jsx';
+import Graphics from './pages/Graphics.jsx';
+import Header from './pages/Header.jsx';
+import Login from './pages/Login.jsx';
+import Register from './pages/Register.jsx';
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token') || '');

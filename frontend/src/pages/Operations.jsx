@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaSearch, FaTrashAlt, FaArrowUp, FaArrowDown } from 'react-icons/fa';
 import axios from 'axios';
-import AddOperation from './AddOperation';
+import AddOperation from './AddOperation.jsx';
 
 function Operations({ token }) {
   const [showForm, setShowForm] = useState(false);
