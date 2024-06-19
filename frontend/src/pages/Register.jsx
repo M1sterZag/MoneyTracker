@@ -17,14 +17,14 @@ const Register = () => {
       return;
     }
     try {
-      await axios.post('http://localhost:8000/api/auth/signup', {
+      await axios.post('http://app:8000/api/auth/signup', {
         username,
         password,
       });
       setSuccess(true);
       setTimeout(() => {
         navigate('/');
-      }, 3000); // Перенаправление через 3 секунды
+      }, 3000);
     } catch (error) {
       if (error.response && error.response.data.detail === 'Username already exists') {
         setError('Пользователь с таким именем уже существует.');

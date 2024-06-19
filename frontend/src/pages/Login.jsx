@@ -11,12 +11,12 @@ const Login = ({ setToken }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8000/api/auth/login', {
+      const response = await axios.post('http://app:8000/api/auth/login', {
         username,
         password,
       });
       setToken(response.data.access_token);
-      navigate('/home'); // Перенаправление на главную страницу
+      navigate('/home');
     } catch (error) {
       setError('Ошибка авторизации. Проверьте имя пользователя и пароль.');
     }

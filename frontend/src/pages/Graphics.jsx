@@ -28,7 +28,7 @@ function Graphics({ token }) {
   useEffect(() => {
     const fetchOperations = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/operations/get', {
+        const response = await axios.get('http://app:8000/api/operations/get', {
           headers: {
             Authorization: `Bearer ${token}`,
           },

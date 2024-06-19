@@ -19,7 +19,7 @@ function Operations({ token }) {
     const fetchOperations = async () => {
       setLoading(true);
       try {
-        const response = await axios.get('http://localhost:8000/api/operations/get', {
+        const response = await axios.get('http://app:8000/api/operations/get', {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -41,7 +41,7 @@ function Operations({ token }) {
   const handleAddOperation = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8000/api/operations/add', newOperation, {
+      const response = await axios.post('http://app:8000/api/operations/add', newOperation, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -58,7 +58,7 @@ function Operations({ token }) {
 
   const handleDeleteOperation = async (operationId) => {
     try {
-      await axios.delete(`http://localhost:8000/api/operations/delete/${operationId}`, {
+      await axios.delete(`/app/api/operations/delete/${operationId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

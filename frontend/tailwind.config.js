@@ -1,8 +1,7 @@
-/** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    './index.html',
+    './src/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
@@ -10,7 +9,7 @@ export default {
         'mgreen': '#6EC246',
         'mgray': '#626262',
         'mcgray': '#303030',
-        'mcblack': '#181818'
+        'mcblack': '#181818',
       },
       spacing: {
         '192': '48rem',
@@ -22,7 +21,6 @@ export default {
   },
   plugins: [],
   corePlugins: {
-    preflight: false
+    preflight: false,
   },
-}
-
+};

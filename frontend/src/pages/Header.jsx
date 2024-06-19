@@ -15,7 +15,7 @@ function Header({ setToken, token }) {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/auth/me', {
+        const response = await axios.get('http://app:8000/api/auth/me', {
           headers: {
             Authorization: `Bearer ${token}`,
           },

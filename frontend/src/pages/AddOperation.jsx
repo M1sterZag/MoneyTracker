@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function AddOperation({ handleCancel, handleAddOperation, handleChange, newOperation }) {
+  const [amountError, setAmountError] = useState('');
+
+  const handleAmountChange = (e) => {
+    const value = e.target.value;
+    handleChange(e);
+
+    if (value < 0) {
+      setAmountError('Сумма не может быть отрицательной');
+    } else {
+      setAmountError('');
+    }
+  };
+
   return (
     <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-80 flex items-center justify-center">
       <div className="bg-mcblack p-10 rounded-lg w-full max-w-md">
@@ -24,11 +37,12 @@ function AddOperation({ handleCancel, handleAddOperation, handleChange, newOpera
               id="amount"
               name="amount"
               value={newOperation.amount}
-              onChange={handleChange}
+              onChange={handleAmountChange}
               className="w-full box-border border-none p-3 rounded-lg bg-mcgray text-white text-lg border border-mcgray placeholder-white focus:outline-none"
               placeholder="Цена..."
               required
             />
+            {amountError && <p className="text-red-600 mt-2">{amountError}</p>}
           </div>
           <div className="mb-4 focus-within:ring-2 focus-within:ring-mgreen rounded-lg">
             <input
@@ -80,6 +94,7 @@ function AddOperation({ handleCancel, handleAddOperation, handleChange, newOpera
             <button
               type="submit"
               className="border-none bg-mcgray text-white text-lg p-4 rounded-lg hover:bg-mgreen transition-colors duration-300"
+              disabled={amountError}
             >
               Сохранить
             </button>
